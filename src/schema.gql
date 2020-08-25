@@ -1,0 +1,54 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Invite {
+  id: ID!
+  user_id: String!
+  invited_email: String!
+  invited_user_id: String
+  status: String!
+  updated_at: String!
+  created_at: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+  surname: String!
+  email: String!
+  lang: String!
+  status: String!
+  updated_at: String!
+  created_at: String!
+}
+
+type Query {
+  user(id: String!): User!
+  users(page: Int = 1, size: Int = 25): [User!]!
+  invites(page: Int = 1, size: Int = 25): [Invite!]!
+}
+
+type Mutation {
+  createUser(newUserData: CreateUserInput!): User!
+  deleteUser(id: String!): Boolean!
+  createInvite(newInviteData: CreateInviteInput!): Invite!
+}
+
+input CreateUserInput {
+  name: String!
+  surname: String!
+  email: String!
+  password: String!
+  password_confirmation: String!
+  lang: String!
+}
+
+input CreateInviteInput {
+  email: String!
+}
+
+type Subscription {
+  userCreated: User!
+  inviteCreated: Invite!
+}
