@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Invite } from ".";
 
 @ObjectType()
 export class User {
@@ -25,4 +26,6 @@ export class User {
 
   @Field()
   created_at: string;
+
+  invites: [Invite];
 }

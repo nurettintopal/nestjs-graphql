@@ -16,7 +16,7 @@ export class InviteService {
     invited_user_id: null,
     status: "INVITED",
     created_at: "2020-07-26 17:42:15",
-    updated_at: "2020-07-26 17:42:15"
+    updated_at: "2020-07-26 17:42:15",
   };
 
   async create(data: CreateInviteInput): Promise<Invite> {
@@ -27,5 +27,11 @@ export class InviteService {
   async search(invitesArgs: InvitesArgs): Promise<Invite[]> {
     console.log(`Query Invite.search => ${JSON.stringify(invitesArgs)}`);
     return [this.mockInviteData] as Invite[];
+  }
+
+  async findUserInvites(id: String): Promise<Invite[]> {
+    console.log(`Query Invite.resolver: ${JSON.stringify(id)}`);
+
+    return [this.mockInviteData] as any;
   }
 }

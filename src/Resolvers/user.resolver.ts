@@ -1,15 +1,26 @@
 import { NotFoundException } from "@nestjs/common";
-import { Args, Mutation, Query, Resolver, Subscription } from "@nestjs/graphql";
+import {
+  Args,
+  Mutation,
+  Query,
+  Resolver,
+  Subscription,
+  ResolveField,
+  Parent,
+} from "@nestjs/graphql";
 import { PubSub } from "apollo-server-express";
 import { CreateUserInput, UsersArgs } from "../DTOs";
-import { User } from "../Models";
-import { UserService } from "../Services";
+import { User, Invite } from "../Models";
+import { UserService, InviteService } from "../Services";
 
 const pubSub = new PubSub();
 
 @Resolver((of) => User)
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly inviteService: InviteService
+  ) {}
 
   @Query((returns) => User)
   async user(@Args("id") id: string): Promise<User> {
@@ -36,7 +47,7 @@ export class UserResolver {
       })}`
     );
     pubSub.publish("UserCreated", { userCreated: user });
-    return user;
+    return user as any;
   }
 
   @Mutation((returns) => Boolean)
@@ -47,5 +58,11 @@ export class UserResolver {
   @Subscription((returns) => User)
   userCreated() {
     return pubSub.asyncIterator("UserCreated");
+  }
+
+  @ResolveField((returns) => [Invite])
+  async invites(@Parent() user: User) {
+    const { id } = user;
+    return this.inviteService.findUserInvites(id);
   }
 }

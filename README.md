@@ -61,7 +61,9 @@ nestjs-graphql is open-sourced software licensed under the [MIT license](LICENSE
 ## To-Dos
 - [x] NestJS initialization
 - [x] Initialize GraphQL structure
+- [x] Add resolver between relational models
+- [x] Add configuration
+- [x] Add health endpoint for the health checks
 - [ ] Sample REST API Implementation
 - [ ] Authentication with Bearer Token
-- [ ] Resolvers for relational data structures 
 

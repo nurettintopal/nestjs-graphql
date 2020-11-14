@@ -21,6 +21,7 @@ type User {
   status: String!
   updated_at: String!
   created_at: String!
+  invites: [Invite!]!
 }
 
 type Query {
