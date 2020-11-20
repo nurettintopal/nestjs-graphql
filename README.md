@@ -36,7 +36,9 @@ http://localhost:3000/graphql
 ## Test
 
 ```note
-cooming soon...
+npm run test:e2e
+
+npm run test:graphql
 ``` 
 
 ## Usage with docker-compose
@@ -64,6 +66,7 @@ nestjs-graphql is open-sourced software licensed under the [MIT license](LICENSE
 - [x] Add resolver between relational models
 - [x] Add configuration
 - [x] Add health endpoint for the health checks
+- [x] Add e2e & graphql test structure
 - [ ] Sample REST API Implementation
 - [ ] Authentication with Bearer Token
 
